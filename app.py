@@ -1,64 +1,12 @@
 from flask import Flask
 import os
 
-def main():
-    print("Xin chào! Đây là chương trình Python đầu tiên của bạn!")
-    
-    # Một số ví dụ cơ bản
-    name = "Người dùng"
-    age = 25
-    score = 95.5
-    
-    print(f"Tên: {name}")
-    print(f"Tuổi: {age}")
-    print(f"Điểm số: {score}")
-    
-    # Ví dụ về vòng lặp
-    print("\nĐếm từ 1 đến 5:")
-    for i in range(1, 6):
-        print(f"Số {i}")
-    
-    # Ví dụ về điều kiện
-    if score >= 90:
-        print("Xuất sắc!")
-    elif score >= 80:
-        print("Giỏi!")
-    else:
-        print("Cần cố gắng hơn!")
-    
-    # Gọi function khác
-    say_goodbye()
-    
-    # Thêm một số ví dụ Python
-    demonstrate_python_features()
+app = Flask(__name__)
 
-def say_goodbye():
-    print("\nTạm biệt! Chúc bạn học Python vui vẻ!")
+@app.route('/')
+def home():
+    return "Hello Render! Đây là ứng dụng web Flask của tôi."
 
-def demonstrate_python_features():
-    print("\n--- Một số tính năng đặc biệt của Python ---")
-    
-    # List và List comprehension
-    numbers = [1, 2, 3, 4, 5]
-    squares = [x**2 for x in numbers]
-    print(f"Số gốc: {numbers}")
-    print(f"Bình phương: {squares}")
-    
-    # Dictionary
-    student = {
-        "name": "Nguyễn Văn A",
-        "age": 20,
-        "grades": [8.5, 9.0, 7.5]
-    }
-    print(f"\nThông tin học sinh: {student['name']}")
-    print(f"Điểm trung bình: {sum(student['grades']) / len(student['grades']):.1f}")
-    
-    # String methods
-    text = "python là ngôn ngữ lập trình tuyệt vời"
-    print(f"\nChuỗi gốc: {text}")
-    print(f"Viết hoa: {text.upper()}")
-    print(f"Viết hoa chữ cái đầu: {text.title()}")
-
-# Chạy chương trình chính
 if __name__ == "__main__":
-    main()
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
